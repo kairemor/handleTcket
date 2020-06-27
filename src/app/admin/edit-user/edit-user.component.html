@@ -1,0 +1,47 @@
+<app-navbar></app-navbar><br>
+
+      <div class="col-sm-6 offset-sm-3 mt-2">
+          <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="dept">Département</label>
+                  <input type="text" class="form-control" id="dept" placeholder="Votre département">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="service">Service</label>
+                  <input type="text" class="form-control" id="service" placeholder="Votre service">
+                </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="inputCity">First Name</label>
+                    <input type="text" class="form-control" id="inputCity">
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="inputCity">Last Name</label>
+                      <input type="text" class="form-control" id="inputCity">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username">
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="votre email">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="phone">Téléphone</label>
+                      <input type="text" class="form-control" id="phone" placeholder="contact">
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="poste">Poste</label>
+                <input type="text" class="form-control" id="poste" placeholder="Renseigner votre poste">
+              </div>
+              <button type="submit" class="btn btn-primary">Modifier</button>
+              <a type="button" class="btn btn-danger" [routerLink]="[ '/users']">Annuler</a>
+            </form>
+      </div>
+<app-footer></app-footer>

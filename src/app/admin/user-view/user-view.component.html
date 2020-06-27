@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="row">
+<div class="col-md-3" style="margin-left: 4px; margin-top: 5px">
+    <div class="card">
+        <h5 class="card-header">Mon profil</h5>
+        <img src="src/assets/img/amy.jpg" class="card-img-top" alt="Upload image">
+        <div class="card-body">
+          <h5 class="card-title">Nom et prénom</h5>
+          <p class="card-text">Poste</p>
+          <a href="#" class="btn btn-primary">Modifier votre profil</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+<!-- <div class="col-sm-6 offset-sm-3 mt-2"> -->
+    <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="dept">Département</label>
+            <input type="text" class="form-control" id="dept" placeholder="Votre département">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="service">Service</label>
+            <input type="text" class="form-control" id="service" placeholder="Votre service">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">First Name</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="prénom">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">Last Name</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="nom">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="@username">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="votre mail">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Téléphone</label>
+                <input type="text" class="form-control" id="phone" placeholder="contact">
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="poste">Poste</label>
+          <input type="text" class="form-control" id="poste" placeholder="renseigner votre poste">
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <a type="submit" class="btn btn-danger" [routerLink]="['/liste-des-demandes']">Annuler</a>
+      </form>
+</div>
+</div>

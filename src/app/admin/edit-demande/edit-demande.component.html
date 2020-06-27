@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<div class="col-sm-6 offset-sm-3 mt-2">
+  <form [formGroup]="demandeForm" (ngSubmit)="saveForm()">
+    <div class="form-group">
+      <label for="description">Objet de la demande</label>
+      <textarea type="text" placeholder="Description détaillée" formControlName="description"
+        class="form-control"></textarea>
+    </div>
+    <label>Informations du validateur</label>
+    <div class="form-row" formGroupName="validator">
+      <div class="form-group col-md-3">
+        <label for="author">Prénom</label>
+        <input type="text" placeholder="prénom" id="author" formControlName="firstName" class="form-control">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="author">Nom</label>
+        <input type="text" placeholder="nom" id="author" formControlName="lastName" class="form-control">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="email">Email</label>
+        <input type="email" placeholder="Email" id="email" formControlName="email" class="form-control">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="tel">Téléphone</label>
+        <input type="text" class="form-control" id="tel" formControlName="phone" placeholder="phone">
+      </div>
+    </div>
+    <div class="form-group">
+      <div formArrayName="infos">
+        <div *ngFor="let info of infos.controls; index as i;">
+          <div [formGroupName]="info" class="form-row">
+            <div class="form-group col-md-3">
+              <label>IP Source</label>
+              <input type="text" class="form-control" formControlName="ipSource">
+            </div>
+            <div class="form-group col-md-3">
+              <label>IP Destination</label>
+              <input type="text" class="form-control" formControlName="ipDestination">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Protocole</label>
+              <input type="text" class="form-control" formControlName="protocole">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Port</label>
+              <input type="text" class="form-control" formControlName="port">
+            </div>
+            <div class="form-group col-md-1">
+              <label>Supprimer</label>
+              <button type="button" class="btn btn-danger" (click)="delete(i)"><span class="icon-cross"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addInfos()"><span class="icon-plus"></span></button>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="endOfValidity">Date fin de validité</label>
+        <input type="date" placeholder="Date" id="date" formControlName="endOfValidity" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row" *ngIf="isDemandeur()">
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-success">Modifier</button>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-danger" (click)="deleteDemande()">Supprimer</button>
+        </div>
+      </div>
+      <div class="form-row" *ngIf="isValidateur()">
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-success">Valider</button>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-danger">Rejeter</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<footer>
+  <app-footer></app-footer>
+</footer>

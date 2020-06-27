@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark bg-dark justify-content-center">
+    <a class="navbar-brand" href="">
+      <img src="assets/download.png" alt="Orange logo" width="75" height="75" class="d-inline-block align-top">
+      <span class="navbar-text">
+          Système de gestion de demandes
+      </span>
+    </a>
+  </nav>
+<div class="container-fluid"> 
+          <form class="form-signin" [formGroup]="loginForm" method="post" (ngSubmit)="login()">
+            <div class="card">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="username" class="col-form-label">Login:</label>
+                    <input id="username" type="text" class="form-control" formControlName="username" placeholder="Enter your username" [ngClass]="{'is-invalid': formValid.username.errors}" autofocus/>
+                    <div *ngIf="formValid.username.errors" class="invalid-feedback">
+                      <div *ngIf="formValid.username.errors.required">Username is required</div>
+                      <div *ngIf="formValid.username.errors.minlength">Au minimum 6 caractères</div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-form-label">Mot de passe:</label>
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid': formValid.password.errors}" autofocus/>
+                    <div *ngIf="formValid.password.errors" class="invalid-feedback">
+                      <div *ngIf="formValid.password.errors.required">Password is required</div>
+                      <div *ngIf="formValid.password.errors.minlength">Au minimum 8 caractères</div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Se connecter</button>
+                  </div>
+               </div>
+               <div class="alert alert-danger" *ngIf="error">Incorrect Username or Password!</div>
+          </div>
+        </form>
+        <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
+  </div>   

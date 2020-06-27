@@ -1,0 +1,6 @@
+*ngIf="!securityObject.canAccessDashboard"
+*ngIf="!securityObject.canAccessTypes"
+*ngIf="securityObject.canAccessHistorique" 
+*ngIf="!securityObject.canViewDemandes"
+*ngIf="!securityObject.isAuthenticated"
+*ngIf="!securityObject.isAuthenticated"

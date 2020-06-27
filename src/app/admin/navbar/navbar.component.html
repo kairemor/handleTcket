@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <a class="navbar-brand" id="logo"><img src="assets/download.png" alt="Orange logo" width="75" height="75"><br></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample06">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[ '/dashboard']">Accueil<span class="sr-only">(current)</span></a>
+        </li>
+        <!-- <li class="nav-item">
+            <a *ngIf="isAdmin()" class="nav-link" [routerLink]="[ '/historique']">Toutes les demandes<span class="sr-only">(current)</span></a>
+          </li> -->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[ '/liste-des-demandes']">Demandes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link enabled" [routerLink]="['/users']">Utilisateurs</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown06">
+            <a class="dropdown-item" [routerLink]="['/user', 0]">Mes infos</a>
+            <a class="dropdown-item" [routerLink]="['/login']" (onClick)="logout()">Se déconnecter</a>
+          </div>
+        </li>
+      </ul>
+        <a class="nav-link" type="button" id="icone" [routerLink]="['/login']"><span class="icon-switch"></span></a>
+    </div>
+  </nav>

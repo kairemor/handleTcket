@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar bg-light navbar-light" id="demande"><h4>Demandes</h4></nav>
+  </div><br>
+          <div>
+              <a [routerLink]="['/edit']" class="btn btn-primary btn-xs" id="add"><span class="icon-plus"></span></a>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-inline col-md-3">
+              <input class="form-control" type="search" placeholder="Rechercher" [(ngModel)]='listFilter'/>
+            </div>
+            <div class="form-group form-inline col-md-3">
+              <input class="form-control" type="datetime-local"/>
+            </div>
+            <div class="form-group form-inline col-md-3">
+                <input class="form-control" type="datetime-local"/>
+            </div>
+          </div>
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm">
+              <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Type de demande</th>
+                    <th>Description</th>
+                    <th>Initiateur</th>
+                    <th>Date de création</th>
+                    <th>Depuis le</th>
+                    <th>Etat</th>
+                    <th>Date de validation</th>
+                    <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let demande of demandes$" style="height: 1em">
+                  <th>
+                    {{demande.id}}
+                  </th>
+                  <th>
+                      {{demande.type.name}}
+                  </th>
+                  <th>
+                      {{ demande.description | slice:0:20 }}
+                  </th>
+                  <th>
+                    {{ demande.author.firstName + ' ' + demande.author.lastName }}
+                  </th>
+                  <th>
+                    <span class="badge badge-pill badge-light">{{ demande.createdAt | date: 'short'}}</span>
+                  </th> 
+                  <th>
+                      {{ demande.createdAt | amLocale: 'fr' | amTimeAgo}}
+                  </th>
+                  <th>
+                      {{ demande.status.name }}
+                  </th>
+                  <th>
+                    {{ demande.validatedAt | date: 'short'}}
+                  </th>
+                  <th>
+                      <div *ngIf="isValidator()" class="btn-group btn-group-sm" id="button">
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-checkmark"></span></a>
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-cancel-circle"></span></a>
+                      </div>
+                      <div *ngIf="!isValidator() && isAdmin()">
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-cogs"></span></a>
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-users"></span></a>
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-clipboard"></span></a>
+                            <a [routerLink]="[ '/edit-demande', demande.id]"><span class="icon-lock"></span></a>
+                      </div>
+                      <div *ngIf="!isValidator() && !isAdmin()" class="btn-group btn-group-sm" id="button">
+                          <a [routerLink]="[ '/edit-demande', demande.id]" class=""><span class="icon-pencil"></span></a>
+                          <a (click)="deleteDemande(demande.id)"><span class="icon-bin"></span></a>
+                      </div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+                </ngb-pagination>
+            </div>
+        </div>
+</div>
+
+<app-footer></app-footer>

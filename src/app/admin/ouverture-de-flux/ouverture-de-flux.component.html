@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="o-nav-local">
+        <nav class="container-fluid">
+                <a class="nav-link dropdown-toggle" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ouverture de flux</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['/edit']"><span class="icon-arrow-left2"></span>Back</a>
+                </div>
+        </nav>
+    </div>
+    <div class="col-sm-6 offset-sm-3 mt-2">
+        <form [formGroup]="demandeForm" (ngSubmit)="saveForm()">
+              <div class="form-group">
+                <label for="description">Objet de la demande</label>
+                <textarea type="description" class="form-control" formControlName="description" id="description" placeholder="Description détaillée"></textarea>
+              </div>
+              <label for="infos">Informations du validateur</label>
+              <div class="form-row" formGroupName="validator">
+                <div class="form-group col-md-3">
+                    <label for="firstName">Prénom</label>
+                    <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="prénom du validateur">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="firstName">Nom</label>
+                    <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="nom du validateur">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" id="email" placeholder="Mail du validateur">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="phone">Téléphone</label>
+                    <input type="phone" class="form-control" formControlName="phone" id="phone" placeholder="Numéro">
+                </div>
+              </div>
+        <div class="form-group">
+          <div formArrayName="infos">
+              <div  class="form-row" [formGroupName]="i" *ngFor="let info of infos.controls; index as i">
+                <div class="form-group col-md-3">
+                  <label attr.for="{{ 'ipSource' + i }}">IP Source</label>
+                  <input type="text" class="form-control" formControlName="ipSource" id="{{ 'ipSource' + i }}">
+                </div>
+                <div class="form-group col-md-3">
+                  <label attr.for="{{ 'ipDestination' + i }}">IP Destination</label>
+                  <input type="text" class="form-control" id="{{ 'ipDestination' + i }}" formControlName="ipDestination">
+                </div>
+                <div class="form-group col-md-2">
+                  <label attr.for="{{ 'protocole' + i }}">Protocole</label>
+                  <input type="text" class="form-control" formControlName="protocole" id="{{ 'protocole' + i }}">
+                </div>
+                <div class="form-group col-md-2">
+                  <label attr.for="{{ 'port' + i }}">Port</label>
+                  <input type="text" class="form-control" formControlName="port" id="{{ 'port' + i }}">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Supprimer</label>
+                    <button type="button" class="btn btn-danger" (click)="delete(i)"><span class="icon-cross"></span></button>
+                  </div>
+              </div>
+          </div>
+          <button type="button" class="btn btn-primary" [disabled]="!infos.valid" (click)="addInfos()"><span class="icon-plus"></span></button>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="endOfValidity">Date fin de validité</label>
+                <input type="date" class="form-control" formControlName="endOfValidity" id="endOfValidity">
+            </div>
+        </div>
+            <button type="submit" class="btn btn-success" 
+            [title]="demandeForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [disabled]="!demandeForm.valid">
+            Soumettre</button>
+          </form>
+    </div>    
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar bg-light navbar-light"><h2>Table des utilisateurs</h2></nav>
+    </div><br>
+    <form >
+      <div>
+          <a id="add" class="btn btn-primary btn-xs" [routerLink]="['/add-user']"><span class="icon-plus"></span></a>
+      </div>
+      <div class="form-group form-inline">
+          Rechercher: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+          <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+      </div>
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm">
+              <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Service</th>
+                    <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users$ | async">
+                  <th scope="row">{{user.userID}}</th>
+                  <th>
+                        <ngb-highlight [result]="user.firstName" [term]="service.searchTerm"></ngb-highlight>
+                  </th>
+                  <th>
+                        <ngb-highlight [result]="user.lastName" [term]="service.searchTerm"></ngb-highlight>
+                  </th>
+                  <th>
+                      <ngb-highlight [result]="user.email" [term]="service.searchTerm"></ngb-highlight>
+                  </th>  
+                  <th>
+                      {{user.phone}}
+                  </th>
+                  <th>
+                      <ngb-highlight [result]="user.service" [term]="service.searchTerm"></ngb-highlight>
+                  </th>
+                  <th>
+                    <div class="btn-group btn-group-sm" id="button">
+                        <a [routerLink]="['/edit-user', 0]" class=""><span class="icon-pencil"></span></a>
+                        <a class=""><span class="icon-bin"></span></a>
+                        <a class=""><span class="icon-cancel-circle"></span></a>
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <ngb-pagination
+                  [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+                </ngb-pagination>
+            
+                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                  <option [ngValue]="2">2 items per page</option>
+                  <option [ngValue]="4">4 items per page</option>
+                  <option [ngValue]="6">6 items per page</option>
+                </select>
+              </div>
+        </div>
+    </form>     
+</div>
+<app-footer></app-footer>
