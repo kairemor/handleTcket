@@ -37,7 +37,7 @@
     "ngx-moment": "^3.4.0",
     "popper.js": "^1.15.0",
     "rxjs": "~6.5.3",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "tablesorter": "^2.31.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
